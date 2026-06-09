@@ -1,0 +1,54 @@
+---
+import { event } from "../data/agenda";
+---
+
+<footer class="surface-dark">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img src="/logos/impact-brain.png" alt="" width="36" height="36" />
+      <div>
+        <p class="footer-title">{event.title}</p>
+        <p class="footer-sub">{event.dates} · {event.city}</p>
+      </div>
+    </div>
+    <p class="footer-copy">© 2026 IMPACT-MH. All rights reserved.</p>
+  </div>
+</footer>
+
+<style>
+  footer {
+    border-top: 1px solid var(--border-dark);
+  }
+
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding-block: 2.5rem;
+  }
+
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+  }
+
+  .footer-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #ffffff;
+  }
+
+  .footer-sub {
+    font-size: 0.85rem;
+    color: var(--blue);
+  }
+
+  .footer-copy {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+</style>

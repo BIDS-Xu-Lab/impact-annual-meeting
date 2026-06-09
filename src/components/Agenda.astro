@@ -1,0 +1,163 @@
+---
+import Button from "./Button.astro";
+import { agenda, event } from "../data/agenda";
+---
+
+<section id="agenda" class="section section-b">
+  <div class="container">
+    <div class="agenda-header reveal">
+      <div>
+        <span class="section-tag">Agenda · Tentative</span>
+        <h2 class="section-title">Registration &amp; Agenda</h2>
+        <p class="section-lead">
+          Registration is open. The agenda below is tentative — session specifics and
+          breakout details are coming soon.
+        </p>
+      </div>
+      <Button href={event.registerUrl} size="lg">Register Now</Button>
+    </div>
+
+    <div class="agenda-days">
+      {
+        agenda.map((day) => (
+          <article class="agenda-day reveal" id={day.id}>
+            <header class="agenda-day-header">
+              <span class="agenda-day-label">{day.label}</span>
+              <h3>{day.date}</h3>
+            </header>
+
+            <ul class="agenda-items">
+              {day.items.map((item) => (
+                <li class:list={["agenda-item", item.kind && `agenda-item-${item.kind}`]}>
+                  <span class="agenda-time">{item.time}</span>
+                  <div class="agenda-content">
+                    <h4>{item.title}</h4>
+                    {item.note && <p class="agenda-note">{item.note}</p>}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .agenda-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .agenda-days {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2.75rem;
+  }
+
+  .agenda-day {
+    background: var(--surface-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+  }
+
+  .agenda-day-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 2rem;
+    background: linear-gradient(120deg, var(--navy-ink), var(--navy));
+  }
+
+  .agenda-day-label {
+    padding: 0.3rem 0.9rem;
+    border-radius: var(--radius-pill);
+    background: rgba(99, 170, 255, 0.18);
+    border: 1px solid rgba(99, 170, 255, 0.35);
+    color: var(--blue-pale);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .agenda-day-header h3 {
+    color: #ffffff;
+    font-size: 1.3rem;
+  }
+
+  .agenda-items {
+    list-style: none;
+  }
+
+  .agenda-item {
+    display: flex;
+    gap: 2rem;
+    padding: 1.5rem 2rem;
+    border-left: 4px solid var(--blue);
+  }
+
+  .agenda-item + .agenda-item {
+    border-top: 1px solid var(--border-light);
+  }
+
+  .agenda-item-social,
+  .agenda-item-break {
+    border-left-color: var(--mint);
+    background: rgba(168, 230, 207, 0.08);
+  }
+
+  .agenda-time {
+    flex: 0 0 200px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: var(--navy);
+  }
+
+  .agenda-content h4 {
+    font-family: var(--font-body);
+    font-size: 1.08rem;
+    font-weight: 600;
+    color: var(--text-heading);
+  }
+
+  .agenda-note {
+    margin-top: 0.3rem;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 1024px) {
+    .agenda-time {
+      flex-basis: 160px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .agenda-item {
+      flex-direction: column;
+      gap: 0.35rem;
+      padding: 1.25rem 1.5rem;
+    }
+
+    .agenda-time {
+      flex-basis: auto;
+      font-size: 0.92rem;
+    }
+
+    .agenda-day-header {
+      padding: 1.25rem 1.5rem;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+  }
+</style>

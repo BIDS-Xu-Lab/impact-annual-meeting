@@ -1,0 +1,110 @@
+---
+import { event } from "../data/agenda";
+---
+
+<section id="overview" class="section section-a">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-tag">About the Event</span>
+      <h2 class="section-title">Overview</h2>
+    </div>
+
+    <div class="overview-grid">
+      <article class="overview-card reveal">
+        <h3>About</h3>
+        <p>Gather for the In-Person Annual IMPACT-MH meeting.</p>
+        <p class="overview-muted">
+          More details about the program and speakers are on the way — check back soon.
+        </p>
+      </article>
+
+      <article class="overview-card reveal">
+        <h3>Date &amp; Location</h3>
+        <dl class="overview-facts">
+          <div class="overview-fact">
+            <dt>Date</dt>
+            <dd>{event.dates}</dd>
+          </div>
+          <div class="overview-fact">
+            <dt>Location</dt>
+            <dd>{event.venue}</dd>
+          </div>
+        </dl>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .overview-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .overview-card {
+    position: relative;
+    overflow: hidden;
+    padding: 2.25rem 2.25rem 2.5rem;
+    background: var(--surface-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .overview-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .overview-card h3 {
+    font-size: 1.45rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .overview-card p + p {
+    margin-top: 0.75rem;
+  }
+
+  .overview-muted {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+
+  .overview-facts {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .overview-fact {
+    padding-left: 1rem;
+    border-left: 3px solid var(--blue);
+  }
+
+  .overview-fact dt {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .overview-fact dd {
+    margin-top: 0.2rem;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-heading);
+  }
+
+  @media (max-width: 768px) {
+    .overview-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

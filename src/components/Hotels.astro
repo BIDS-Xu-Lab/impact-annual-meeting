@@ -1,0 +1,89 @@
+---
+const placeholders = [1, 2, 3];
+---
+
+<section id="hotels" class="section section-a">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-tag">Where to Stay</span>
+      <h2 class="section-title">Hotel Recommendations</h2>
+      <p class="section-lead">
+        We're putting together a list of recommended hotels near the venue. Options coming
+        soon.
+      </p>
+    </div>
+
+    <div class="hotel-grid">
+      {
+        placeholders.map(() => (
+          <article class="hotel-card reveal" aria-label="Hotel recommendation coming soon">
+            <span class="hotel-icon" aria-hidden="true">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M3 21h18" />
+                <path d="M5 21V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v14" />
+                <path d="M9 9h1M14 9h1M9 13h1M14 13h1M10 21v-3h4v3" />
+              </svg>
+            </span>
+            <h3>Coming Soon</h3>
+            <p>Hotel name, rates, and booking details will be posted here.</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .hotel-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .hotel-card {
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1.5px dashed var(--border-light);
+    border-radius: var(--radius-card);
+    text-align: center;
+  }
+
+  .hotel-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 171, 171, 0.25);
+    color: var(--pink-soft);
+    margin-bottom: 1.1rem;
+  }
+
+  .hotel-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .hotel-card p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 768px) {
+    .hotel-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

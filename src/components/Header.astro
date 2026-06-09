@@ -1,0 +1,292 @@
+---
+import { event } from "../data/agenda";
+
+const links = [
+  { href: "#overview", label: "Overview" },
+  { href: "#agenda", label: "Agenda" },
+  { href: "#hotels", label: "Hotels" },
+];
+---
+
+<header id="site-header">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#top" aria-label="Back to top">
+      <img src="/logos/impact-brain.png" alt="" width="32" height="32" />
+      <span class="nav-brand-text">
+        <span class="nav-brand-name">IMPACT-MH</span>
+        <span class="nav-brand-sub">2026 Annual Meeting</span>
+      </span>
+    </a>
+
+    <nav aria-label="Primary">
+      <ul class="nav-links" id="nav-links">
+        {
+          links.map((link) => (
+            <li>
+              <a href={link.href}>{link.label}</a>
+            </li>
+          ))
+        }
+        <li class="nav-cta">
+          <a class="btn btn-pink" href={event.registerUrl}>Register</a>
+        </li>
+      </ul>
+    </nav>
+
+    <button
+      class="nav-hamburger"
+      id="nav-hamburger"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+      aria-controls="nav-links"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<style>
+  #site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    height: var(--header-height);
+    transition:
+      background-color 0.3s ease,
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
+    border-bottom: 1px solid transparent;
+  }
+
+  #site-header.scrolled {
+    background: rgba(0, 28, 57, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom-color: var(--border-dark);
+    box-shadow: 0 8px 30px rgba(0, 28, 57, 0.35);
+  }
+
+  .nav-inner {
+    width: min(1180px, 100% - 3rem);
+    height: 100%;
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+
+  .nav-brand img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .nav-brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  .nav-brand-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: #ffffff;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-brand-sub {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--blue);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.9rem;
+    list-style: none;
+  }
+
+  .nav-links a:not(.btn) {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--blue-pale);
+    transition: color 0.2s ease;
+  }
+
+  .nav-links a:not(.btn):hover,
+  .nav-links a:not(.btn).active {
+    color: #ffffff;
+  }
+
+  .nav-links a:not(.btn).active {
+    text-decoration: underline;
+    text-decoration-color: var(--pink);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 6px;
+  }
+
+  .nav-cta .btn {
+    padding: 0.5rem 1.25rem;
+    font-size: 1rem;
+  }
+
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 42px;
+    height: 42px;
+    padding: 10px;
+    background: transparent;
+    border: 1px solid var(--border-dark);
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .nav-hamburger span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: var(--blue-pale);
+    border-radius: 2px;
+    transition:
+      transform 0.25s ease,
+      opacity 0.25s ease;
+  }
+
+  .nav-hamburger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .nav-hamburger.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-hamburger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  @media (max-width: 1024px) {
+    .nav-links {
+      gap: 1.3rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .nav-hamburger {
+      display: flex;
+    }
+
+    .nav-links {
+      position: fixed;
+      top: var(--header-height);
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: 0.75rem 1.5rem 1.5rem;
+      background: rgba(0, 28, 57, 0.97);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-dark);
+      transform: translateY(-12px);
+      opacity: 0;
+      visibility: hidden;
+      transition:
+        transform 0.25s ease,
+        opacity 0.25s ease,
+        visibility 0.25s;
+    }
+
+    .nav-links.open {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .nav-links li {
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .nav-links li:last-child {
+      border-bottom: none;
+    }
+
+    .nav-links a:not(.btn) {
+      display: block;
+      padding: 0.9rem 0;
+      font-size: 1.05rem;
+    }
+
+    .nav-cta {
+      padding-top: 1rem;
+    }
+
+    .nav-cta .btn {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  const header = document.getElementById("site-header")!;
+  const hamburger = document.getElementById("nav-hamburger")!;
+  const navLinks = document.getElementById("nav-links")!;
+
+  const onScroll = () => {
+    header.classList.toggle("scrolled", window.scrollY > 40);
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  hamburger.addEventListener("click", () => {
+    const open = navLinks.classList.toggle("open");
+    hamburger.classList.toggle("open", open);
+    hamburger.setAttribute("aria-expanded", String(open));
+  });
+
+  navLinks.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("open");
+      hamburger.classList.remove("open");
+      hamburger.setAttribute("aria-expanded", "false");
+    });
+  });
+
+  // highlight the nav link for the section currently in view
+  const anchorLinks = [...navLinks.querySelectorAll<HTMLAnchorElement>('a[href^="#"]:not(.btn)')];
+  const sections = anchorLinks
+    .map((link) => document.querySelector<HTMLElement>(link.hash))
+    .filter((section): section is HTMLElement => section !== null);
+
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          anchorLinks.forEach((link) =>
+            link.classList.toggle("active", link.hash === `#${entry.target.id}`)
+          );
+        }
+      }
+    },
+    { rootMargin: "-40% 0px -55% 0px" }
+  );
+
+  sections.forEach((section) => sectionObserver.observe(section));
+</script>
