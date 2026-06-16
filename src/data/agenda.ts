@@ -17,7 +17,7 @@ export const event = {
   dates: "September 22nd – 23rd, 2026",
   city: "Rockville, MD",
   venue: "6001 Executive Blvd, Rockville, MD 20852",
-  registerUrl: "#", // placeholder — swap in the real registration link when available
+  registerUrl: "https://forms.office.com/Pages/ResponsePage.aspx?id=u76M3Tkh-E20EU4-h6vrXG5GuCMraMVDl2mHQfWjYDVUOTNOUDlHNkRVRDgyMlpPRENGTDdUS0w2Ui4u",
 };
 
 export const agenda: AgendaDay[] = [
