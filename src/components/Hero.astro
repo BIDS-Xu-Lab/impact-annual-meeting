@@ -1,10 +1,12 @@
 ---
+import { Image } from "astro:assets";
 import Button from "./Button.astro";
+import brainMark from "../assets/impact-brain.png";
 import { event } from "../data/agenda";
 ---
 
 <section id="top" class="hero surface-dark">
-  <img class="hero-mark" src="/logos/impact-brain.png" alt="" aria-hidden="true" />
+  <Image class="hero-mark" src={brainMark} alt="" aria-hidden="true" width={512} height={512} />
 
   <div class="container hero-inner">
     <p class="hero-tag stagger" style="--i: 0">

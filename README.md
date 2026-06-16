@@ -18,9 +18,12 @@ All commands run from the project root:
 ```text
 /
 ├── public/
-│   ├── favicon.png            # IMPACT-MH brain mark
-│   └── logos/                 # brain mark + full wordmark PNGs
+│   ├── favicon.png            # IMPACT-MH brain mark (favicon)
+│   ├── CNAME                  # custom domain pin for GitHub Pages
+│   ├── robots.txt             # references the generated sitemap
+│   └── logos/                 # full wordmark PNG (used as the social/OG image)
 └── src/
+    ├── assets/impact-brain.png # brain mark, optimized via astro:assets
     ├── data/agenda.ts         # agenda + event metadata (edit content here)
     ├── styles/global.css      # theme tokens, shared utilities, breakpoints
     ├── layouts/BaseLayout.astro
@@ -28,9 +31,11 @@ All commands run from the project root:
     └── pages/index.astro
 ```
 
+Hosted on GitHub Pages at **https://annual.impact-mh.org** — see [DEPLOYMENT.md](DEPLOYMENT.md) for the CI/CD pipeline and redeployment steps.
+
 ## Updating content
 
-- **Registration link** — set `event.registerUrl` in `src/data/agenda.ts` (currently a `#` placeholder); every Register button reads from it.
+- **Registration link** — set `event.registerUrl` in `src/data/agenda.ts`; every Register button reads from it.
 - **Agenda sessions** — add items to the `agenda` array in `src/data/agenda.ts`. Each item takes `time`, `title`, optional `note`, and optional `kind` (`"session" | "break" | "social"` — social/break items get a mint accent).
 - **Hotels** — replace the placeholder cards in `src/components/Hotels.astro` once options are available.
 - **Footer copyright** — edit `src/components/Footer.astro`.

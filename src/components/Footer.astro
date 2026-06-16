@@ -1,11 +1,13 @@
 ---
+import { Image } from "astro:assets";
+import brainMark from "../assets/impact-brain.png";
 import { event } from "../data/agenda";
 ---
 
 <footer class="surface-dark">
   <div class="container footer-inner">
     <div class="footer-brand">
-      <img src="/logos/impact-brain.png" alt="" width="36" height="36" />
+      <Image src={brainMark} alt="" width={36} height={36} />
       <div>
         <p class="footer-title">{event.title}</p>
         <p class="footer-sub">{event.dates} · {event.city}</p>

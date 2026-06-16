@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+import brainMark from "../assets/impact-brain.png";
 import { event } from "../data/agenda";
 
 const links = [
@@ -11,7 +13,7 @@ const links = [
 <header id="site-header">
   <div class="nav-inner">
     <a class="nav-brand" href="#top" aria-label="Back to top">
-      <img src="/logos/impact-brain.png" alt="" width="32" height="32" />
+      <Image src={brainMark} alt="" width={32} height={32} />
       <span class="nav-brand-text">
         <span class="nav-brand-name">IMPACT-MH</span>
         <span class="nav-brand-sub">2026 Annual Meeting</span>

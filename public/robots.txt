@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://annual.impact-mh.org/sitemap-index.xml
