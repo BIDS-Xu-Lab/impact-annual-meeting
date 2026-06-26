@@ -1,5 +1,16 @@
 ---
-const placeholders = [1, 2, 3];
+const hotels = [
+  {
+    name: "Canopy by Hilton Washington DC Bethesda North",
+    address: "940 Rose Avenue, North Bethesda, MD 20852",
+    url: "https://www.hilton.com/en/hotels/dcabnpy-canopy-washington-dc-bethesda-north/?SEO_id=GMB-AMER-PY-DCABNPY&y_source=1_OTA1MDkwMC03MTUtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+  },
+  {
+    name: "Bethesda North Marriott Hotel & Conference Center",
+    address: "5701 Marinelli Road, Rockville, MD 20852",
+    url: "https://www.marriott.com/en-us/hotels/wasbn-bethesda-north-marriott-hotel-and-conference-center/overview/",
+  },
+];
 ---
 
 <section id="hotels" class="section section-a">
@@ -14,27 +25,41 @@ const placeholders = [1, 2, 3];
 
     <div class="hotel-grid">
       {
-        placeholders.map(() => (
-          <article class="hotel-card reveal" aria-label="Hotel recommendation coming soon">
-            <span class="hotel-icon" aria-hidden="true">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M3 21h18" />
-                <path d="M5 21V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v14" />
-                <path d="M9 9h1M14 9h1M9 13h1M14 13h1M10 21v-3h4v3" />
-              </svg>
-            </span>
-            <h3>Coming Soon</h3>
-            <p>Hotel name, rates, and booking details will be posted here.</p>
+        hotels.map((hotel) => (
+          <article class="hotel-card reveal">
+            <div class="hotel-name-row">
+              <span class="hotel-icon" aria-hidden="true">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M3 21h18" />
+                  <path d="M5 21V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v14" />
+                  <path d="M9 9h1M14 9h1M9 13h1M14 13h1M10 21v-3h4v3" />
+                </svg>
+              </span>
+              <h3>
+                <a href={hotel.url} target="_blank" rel="noopener noreferrer">
+                  {hotel.name}
+                </a>
+              </h3>
+            </div>
+            <p class="hotel-address">{hotel.address}</p>
+            <a
+              href={hotel.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hotel-link"
+            >
+              View Hotel &rarr;
+            </a>
           </article>
         ))
       }
@@ -45,39 +70,89 @@ const placeholders = [1, 2, 3];
 <style>
   .hotel-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
     margin-top: 2.5rem;
   }
 
   .hotel-card {
-    padding: 2rem;
-    background: rgba(255, 255, 255, 0.6);
-    border: 1.5px dashed var(--border-light);
+    padding: 2.5rem;
+    background: var(--surface-card);
+    border: 1px solid var(--border-light);
     border-radius: var(--radius-card);
-    text-align: center;
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    min-height: 200px;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .hotel-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .hotel-name-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
   }
 
   .hotel-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     background: rgba(255, 171, 171, 0.25);
     color: var(--pink-soft);
-    margin-bottom: 1.1rem;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
   }
 
   .hotel-card h3 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+    line-height: 1.25;
   }
 
-  .hotel-card p {
+  .hotel-card h3 a {
+    color: var(--text-heading);
+    text-decoration: none;
+  }
+
+  .hotel-card h3 a:hover {
+    color: var(--blue);
+  }
+
+  .hotel-address {
     font-size: 0.95rem;
     color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    flex: 1;
+  }
+
+  .hotel-link {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    border: 1.5px solid var(--pink-soft);
+    border-radius: 999px;
+    color: var(--pink-soft);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    align-self: flex-start;
+    transition:
+      background 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .hotel-link:hover {
+    background: var(--pink-soft);
+    color: #fff;
   }
 
   @media (max-width: 768px) {

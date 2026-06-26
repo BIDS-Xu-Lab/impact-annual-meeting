@@ -14,7 +14,7 @@ import { event } from "../data/agenda";
         <h3>About</h3>
         <p>Join us for the annual IMPACT-MH Consortium Meeting hosted by our parters at NIH.</p>
         <p class="overview-muted">
-          This year, we’ll be meeting in-person at the NIH headquarters in Maryland, and offering a remote participation option. 
+          This year, we'll be meeting in-person at the NIH headquarters in Maryland, and offering a remote participation option.
           All consortium members are invited and welcome to attend. More details to follow as they develop.
         </p>
       </article>
@@ -32,6 +32,23 @@ import { event } from "../data/agenda";
           </div>
         </dl>
       </article>
+    </div>
+
+    <div class="map-card reveal">
+      <div class="map-header">
+        <h3>Map &amp; Directions</h3>
+      </div>
+      <iframe
+        src="https://maps.google.com/maps?q=6001+Executive+Blvd,+Rockville,+MD+20852&output=embed"
+        width="100%"
+        height="360"
+        style="border:0; display: block;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Event venue map"
+        aria-label="Google Maps showing event venue at 6001 Executive Blvd, Rockville, MD 20852"
+      ></iframe>
     </div>
   </div>
 </section>
@@ -101,6 +118,31 @@ import { event } from "../data/agenda";
     font-size: 1.15rem;
     font-weight: 600;
     color: var(--text-heading);
+  }
+
+  .map-card {
+    margin-top: 1.5rem;
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    background: var(--surface-card);
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .map-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .map-header {
+    padding: 2.25rem 2.25rem 1.5rem;
+  }
+
+  .map-header h3 {
+    font-size: 1.45rem;
   }
 
   @media (max-width: 768px) {
