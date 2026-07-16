@@ -1,7 +1,6 @@
 ---
 import { Image } from "astro:assets";
 import brainMark from "../assets/impact-brain.png";
-import { event } from "../data/agenda";
 
 const links = [
   { href: "#overview", label: "Overview" },
@@ -29,14 +28,6 @@ const links = [
             </li>
           ))
         }
-        <li class="nav-cta">
-          <a
-            class="btn btn-pink"
-            href={event.registerUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >Register</a>
-        </li>
       </ul>
     </nav>
 
@@ -146,11 +137,6 @@ const links = [
     text-underline-offset: 6px;
   }
 
-  .nav-cta .btn {
-    padding: 0.5rem 1.25rem;
-    font-size: 1rem;
-  }
-
   .nav-hamburger {
     display: none;
     flex-direction: column;
@@ -239,14 +225,6 @@ const links = [
       display: block;
       padding: 0.9rem 0;
       font-size: 1.05rem;
-    }
-
-    .nav-cta {
-      padding-top: 1rem;
-    }
-
-    .nav-cta .btn {
-      width: 100%;
     }
   }
 </style>

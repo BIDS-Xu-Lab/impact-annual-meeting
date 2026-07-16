@@ -1,21 +1,26 @@
 ---
-import Button from "./Button.astro";
-import { agenda, event } from "../data/agenda";
+import { agenda } from "../data/agenda";
 ---
 
 <section id="agenda" class="section section-b">
   <div class="container">
-    <div class="agenda-header reveal">
-      <div>
-        <span class="section-tag">Agenda · Tentative</span>
-        <h2 class="section-title">Registration &amp; Agenda</h2>
-        <p class="section-lead">
-          Registration is open. The agenda below is tentative — session specifics and
-          breakout details are coming soon.
-        </p>
-      </div>
-      <Button href={event.registerUrl} size="lg" newTab>Register Now</Button>
+    <div class="reveal">
+      <span class="section-tag">Agenda · Tentative</span>
+      <h2 class="section-title">Registration &amp; Agenda</h2>
+      <p class="section-lead">
+        The agenda below is tentative — session specifics and breakout details are
+        coming soon.
+      </p>
     </div>
+
+    <aside class="registration-notice reveal">
+      <p>
+        <strong>Registration is now closed.</strong> If you have questions about attending,
+        please reach out to Polly Painter (<a href="mailto:polly.painter@yale.edu"
+          >polly.painter@yale.edu</a
+        >) for information.
+      </p>
+    </aside>
 
     <div class="agenda-days">
       {
@@ -45,19 +50,38 @@ import { agenda, event } from "../data/agenda";
 </section>
 
 <style>
-  .agenda-header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 2rem;
-    flex-wrap: wrap;
+  .registration-notice {
+    margin-top: 1.75rem;
+    padding: 1.5rem 1.75rem;
+    border: 1px solid var(--border-light);
+    border-left: 4px solid var(--coral);
+    border-radius: var(--radius-card);
+    background: rgba(255, 171, 171, 0.1);
+  }
+
+  .registration-notice p {
+    font-size: 1.05rem;
+    color: var(--text-heading);
+  }
+
+  .registration-notice a {
+    color: var(--navy);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: var(--coral);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+  }
+
+  .registration-notice a:hover {
+    color: var(--pink);
   }
 
   .agenda-days {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    margin-top: 2.75rem;
+    margin-top: 2rem;
   }
 
   .agenda-day {

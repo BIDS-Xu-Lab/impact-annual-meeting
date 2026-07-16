@@ -2,7 +2,6 @@
 import { Image } from "astro:assets";
 import Button from "./Button.astro";
 import brainMark from "../assets/impact-brain.png";
-import { event } from "../data/agenda";
 ---
 
 <section id="top" class="hero surface-dark">
@@ -32,8 +31,7 @@ import { event } from "../data/agenda";
     </div>
 
     <div class="hero-actions stagger" style="--i: 3">
-      <Button href={event.registerUrl} size="lg" newTab>Register Now</Button>
-      <Button href="#agenda" variant="ghost" size="lg">View Agenda</Button>
+      <Button href="#agenda" variant="pink" size="lg">View Agenda</Button>
     </div>
   </div>
 </section>

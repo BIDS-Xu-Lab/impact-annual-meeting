@@ -1,16 +1,7 @@
 ---
-const hotels = [
-  {
-    name: "Canopy by Hilton Washington DC Bethesda North",
-    address: "940 Rose Avenue, North Bethesda, MD 20852",
-    url: "https://www.hilton.com/en/hotels/dcabnpy-canopy-washington-dc-bethesda-north/?SEO_id=GMB-AMER-PY-DCABNPY&y_source=1_OTA1MDkwMC03MTUtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
-  },
-  {
-    name: "Bethesda North Marriott Hotel & Conference Center",
-    address: "5701 Marinelli Road, Rockville, MD 20852",
-    url: "https://www.marriott.com/en-us/hotels/wasbn-bethesda-north-marriott-hotel-and-conference-center/overview/",
-  },
-];
+import { locations } from "../data/locations";
+
+const hotels = locations.filter((loc) => loc.kind === "hotel");
 ---
 
 <section id="hotels" class="section section-a">
