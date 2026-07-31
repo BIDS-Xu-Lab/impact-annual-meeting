@@ -17,6 +17,9 @@ export const event = {
   dates: "September 22nd – 23rd, 2026",
   city: "Rockville, MD",
   venue: "6001 Executive Blvd, Rockville, MD 20852",
+  registerUrl:
+    "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=u76M3Tkh-E20EU4-h6vrXG5GuCMraMVDl2mHQfWjYDVUOTNOUDlHNkRVRDgyMlpPRENGTDdUS0w2Ui4u",
+  registrationCloses: "August 28th, 2026",
 };
 
 export const agenda: AgendaDay[] = [

@@ -35,7 +35,7 @@ Hosted on GitHub Pages at **https://annual.impact-mh.org** — see [DEPLOYMENT.m
 
 ## Updating content
 
-- **Registration** — registration is closed. The notice and contact address live in the `.registration-notice` block of `src/components/Agenda.astro`.
+- **Registration** — the form URL and closing date live in the `event` object in `src/data/agenda.ts` (`registerUrl`, `registrationCloses`); they feed the header, hero, and Agenda CTAs. The notice wording and contact address are in the `.registration-notice` block of `src/components/Agenda.astro`.
 - **Agenda sessions** — add items to the `agenda` array in `src/data/agenda.ts`. Each item takes `time`, `title`, optional `note`, and optional `kind` (`"session" | "break" | "social"` — social/break items get a mint accent).
 - **Map & hotels** — both read from `src/data/locations.ts`, the single source for all event locations. Each entry takes `id`, `kind` (`"venue" | "reception" | "hotel"`), `name`, `address`, `lat`, `lng`, and optional `url`/`note`. The Overview map pins every entry; the Hotels section renders the `hotel` ones. Coordinates are plain lat/lng — no API key is involved.
 - **Footer copyright** — edit `src/components/Footer.astro`.

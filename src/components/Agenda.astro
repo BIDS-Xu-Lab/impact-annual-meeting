@@ -1,5 +1,6 @@
 ---
-import { agenda } from "../data/agenda";
+import Button from "./Button.astro";
+import { agenda, event } from "../data/agenda";
 ---
 
 <section id="agenda" class="section section-b">
@@ -15,11 +16,12 @@ import { agenda } from "../data/agenda";
 
     <aside class="registration-notice reveal">
       <p>
-        <strong>Registration is now closed.</strong> If you have questions about attending,
-        please reach out to Polly Painter (<a href="mailto:polly.painter@yale.edu"
+        <strong>Registration is open through {event.registrationCloses}.</strong> Questions about
+        attending? Reach out to Polly Painter (<a href="mailto:polly.painter@yale.edu"
           >polly.painter@yale.edu</a
-        >) for information.
+        >).
       </p>
+      <Button href={event.registerUrl} size="lg" newTab>Register Now</Button>
     </aside>
 
     <div class="agenda-days">
@@ -51,12 +53,17 @@ import { agenda } from "../data/agenda";
 
 <style>
   .registration-notice {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
     margin-top: 1.75rem;
     padding: 1.5rem 1.75rem;
     border: 1px solid var(--border-light);
-    border-left: 4px solid var(--coral);
+    border-left: 4px solid var(--pink);
     border-radius: var(--radius-card);
-    background: rgba(255, 171, 171, 0.1);
+    background: var(--surface-card);
+    box-shadow: var(--shadow-card);
   }
 
   .registration-notice p {
@@ -64,16 +71,16 @@ import { agenda } from "../data/agenda";
     color: var(--text-heading);
   }
 
-  .registration-notice a {
+  .registration-notice a:not(.btn) {
     color: var(--navy);
     font-weight: 600;
     text-decoration: underline;
-    text-decoration-color: var(--coral);
+    text-decoration-color: var(--pink);
     text-decoration-thickness: 2px;
     text-underline-offset: 3px;
   }
 
-  .registration-notice a:hover {
+  .registration-notice a:not(.btn):hover {
     color: var(--pink);
   }
 
