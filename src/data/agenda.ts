@@ -19,6 +19,7 @@ export const event = {
   venue: "6001 Executive Blvd, Rockville, MD 20852",
   registerUrl:
     "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=u76M3Tkh-E20EU4-h6vrXG5GuCMraMVDl2mHQfWjYDVUOTNOUDlHNkRVRDgyMlpPRENGTDdUS0w2Ui4u",
+  checkRegistrationUrl: "https://impact-mh.org/2026-annual-meeting-registration/",
   registrationCloses: "August 28th, 2026",
 };
 

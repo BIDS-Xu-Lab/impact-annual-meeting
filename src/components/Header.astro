@@ -7,6 +7,7 @@ const links = [
   { href: "#overview", label: "Overview" },
   { href: "#agenda", label: "Agenda" },
   { href: "#hotels", label: "Hotels" },
+  { href: event.checkRegistrationUrl, label: "Check Registration", newTab: true },
 ];
 ---
 
@@ -25,7 +26,13 @@ const links = [
         {
           links.map((link) => (
             <li>
-              <a href={link.href}>{link.label}</a>
+              <a
+                href={link.href}
+                target={link.newTab ? "_blank" : undefined}
+                rel={link.newTab ? "noopener noreferrer" : undefined}
+              >
+                {link.label}
+              </a>
             </li>
           ))
         }

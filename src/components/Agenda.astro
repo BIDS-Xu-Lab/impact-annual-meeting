@@ -21,7 +21,12 @@ import { agenda, event } from "../data/agenda";
           >polly.painter@yale.edu</a
         >).
       </p>
-      <Button href={event.registerUrl} size="lg" newTab>Register Now</Button>
+      <div class="registration-actions">
+        <Button href={event.registerUrl} size="lg" newTab>Register Now</Button>
+        <Button href={event.checkRegistrationUrl} variant="ghost" size="lg" newTab
+          >Check Registration</Button
+        >
+      </div>
     </aside>
 
     <div class="agenda-days">
@@ -82,6 +87,25 @@ import { agenda, event } from "../data/agenda";
 
   .registration-notice a:not(.btn):hover {
     color: var(--pink);
+  }
+
+  .registration-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  /* .btn-ghost is tuned for dark surfaces (global.css); override for this light card */
+  .registration-actions :global(.btn-ghost) {
+    background: transparent;
+    border-color: var(--border-light);
+    color: var(--navy);
+  }
+
+  .registration-actions :global(.btn-ghost:hover) {
+    border-color: var(--blue);
+    color: var(--blue);
+    background: rgba(99, 170, 255, 0.08);
   }
 
   .agenda-days {
