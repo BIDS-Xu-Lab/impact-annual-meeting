@@ -9,8 +9,8 @@ import { agenda, event } from "../data/agenda";
       <span class="section-tag">Agenda · Tentative</span>
       <h2 class="section-title">Registration &amp; Agenda</h2>
       <p class="section-lead">
-        The agenda below is tentative — session specifics and breakout details are
-        coming soon.
+        The full two-day program is below. Day 2 breakout topics and their order are
+        still being finalized and may change.
       </p>
     </div>
 
@@ -38,6 +38,8 @@ import { agenda, event } from "../data/agenda";
               <h3>{day.date}</h3>
             </header>
 
+            {day.note && <p class="agenda-day-note">{day.note}</p>}
+
             <ul class="agenda-items">
               {day.items.map((item) => (
                 <li class:list={["agenda-item", item.kind && `agenda-item-${item.kind}`]}>
@@ -45,6 +47,46 @@ import { agenda, event } from "../data/agenda";
                   <div class="agenda-content">
                     <h4>{item.title}</h4>
                     {item.note && <p class="agenda-note">{item.note}</p>}
+
+                    {item.bullets && (
+                      <ul class="agenda-bullets">
+                        {item.bullets.map((bullet) => (
+                          <li>{bullet}</li>
+                        ))}
+                      </ul>
+                    )}
+
+                    {item.presentations && (
+                      <div class="agenda-detail">
+                        <span class="agenda-detail-label">Presentation order</span>
+                        <ol class="presentation-order">
+                          {item.presentations.map((presentation, index) => (
+                            <li class="presentation-row">
+                              <span class="presentation-num">{index + 1}</span>
+                              <span class="presentation-site">{presentation.site}</span>
+                              <span class="presentation-org">{presentation.org}</span>
+                            </li>
+                          ))}
+                        </ol>
+                      </div>
+                    )}
+
+                    {item.breakouts && (
+                      <div class="agenda-detail">
+                        <span class="agenda-detail-label">Concurrent tracks</span>
+                        <ul class="breakout-tracks">
+                          {item.breakouts.map((breakout) => (
+                            <li class="breakout-track">
+                              <span class="breakout-code">{breakout.code}</span>
+                              <h5 class="breakout-title">{breakout.title}</h5>
+                              {breakout.detail && (
+                                <p class="breakout-detail">{breakout.detail}</p>
+                              )}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                   </div>
                 </li>
               ))}
@@ -170,11 +212,35 @@ import { agenda, event } from "../data/agenda";
     background: rgba(168, 230, 207, 0.08);
   }
 
+  /* Rail and chips carry the coral cue; the row itself stays white so the
+     track text holds the foreground. */
+  .agenda-item-breakout {
+    border-left-color: var(--coral);
+  }
+
+  /* Sits between the day header and the first item; its bottom border stands in
+     for the .agenda-item + .agenda-item rule the first row never gets. */
+  .agenda-day-note {
+    padding: 0.85rem 2rem;
+    border-left: 4px solid var(--coral);
+    border-bottom: 1px solid var(--border-light);
+    background: rgba(255, 171, 171, 0.12);
+    font-size: 0.92rem;
+    color: var(--text-body);
+  }
+
   .agenda-time {
     flex: 0 0 200px;
     font-weight: 600;
     font-variant-numeric: tabular-nums;
     color: var(--navy);
+  }
+
+  /* Fills the row so detail sub-layouts land at the same width on every item,
+     rather than each one sizing to its own longest string. */
+  .agenda-content {
+    flex: 1;
+    min-width: 0;
   }
 
   .agenda-content h4 {
@@ -188,6 +254,129 @@ import { agenda, event } from "../data/agenda";
     margin-top: 0.3rem;
     font-size: 0.95rem;
     font-style: italic;
+    color: var(--text-muted);
+  }
+
+  .agenda-bullets {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin-top: 0.7rem;
+    list-style: none;
+  }
+
+  .agenda-bullets li {
+    position: relative;
+    padding-left: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .agenda-bullets li::before {
+    content: "";
+    position: absolute;
+    top: 0.62em;
+    left: 0;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--blue);
+  }
+
+  .agenda-detail {
+    margin-top: 0.9rem;
+  }
+
+  .agenda-detail-label {
+    display: block;
+    margin-bottom: 0.45rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* Every row declares the same fixed tracks, so columns line up across rows
+     without subgrid or display: contents (which drops list semantics). */
+  .presentation-order {
+    max-width: 38rem;
+    list-style: none;
+  }
+
+  .presentation-row {
+    display: grid;
+    grid-template-columns: 1.5rem 9rem 1fr;
+    align-items: baseline;
+    column-gap: 1rem;
+    padding-block: 0.55rem;
+  }
+
+  .presentation-row + .presentation-row {
+    border-top: 1px solid var(--border-light);
+  }
+
+  .presentation-num {
+    font-size: 0.8rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-muted);
+    text-align: right;
+    padding-right: 0.75rem;
+    border-right: 1px solid var(--border-light);
+    align-self: stretch;
+  }
+
+  .presentation-site {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-heading);
+  }
+
+  .presentation-org {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .breakout-tracks {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    list-style: none;
+  }
+
+  .breakout-track {
+    padding: 1rem 1.15rem 1.15rem;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-inset);
+    background: var(--surface-card);
+  }
+
+  .breakout-code {
+    display: inline-block;
+    margin-bottom: 0.55rem;
+    padding: 0.2rem 0.7rem;
+    border: 1px solid rgba(255, 171, 171, 0.5);
+    border-radius: var(--radius-pill);
+    background: rgba(255, 171, 171, 0.22);
+    color: var(--navy);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* h5 falls outside the global h1–h4 rule, so it is already Albert Sans. */
+  .breakout-title {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--text-heading);
+  }
+
+  .breakout-detail {
+    margin-top: 0.3rem;
+    font-size: 0.9rem;
     color: var(--text-muted);
   }
 
@@ -213,6 +402,28 @@ import { agenda, event } from "../data/agenda";
       padding: 1.25rem 1.5rem;
       flex-wrap: wrap;
       gap: 0.6rem;
+    }
+
+    .agenda-day-note {
+      padding: 0.85rem 1.5rem;
+    }
+
+    /* Institution drops to a second line, still aligned under the acronym. */
+    .presentation-row {
+      grid-template-columns: 1.5rem 1fr;
+      row-gap: 0.1rem;
+    }
+
+    .presentation-num {
+      grid-row: 1 / -1;
+    }
+
+    .presentation-org {
+      grid-column: 2;
+    }
+
+    .breakout-tracks {
+      grid-template-columns: 1fr;
     }
   }
 </style>

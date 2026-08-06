@@ -33,6 +33,7 @@
   /* layout */
   --header-height: 68px;
   --radius-card: 18px;
+  --radius-inset: 12px; /* nested panels inside a --radius-card surface */
   --radius-pill: 999px;
 }
 

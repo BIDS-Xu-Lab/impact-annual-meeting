@@ -67,7 +67,11 @@ const ogImage = new URL("/logos/impact-wordmark.png", Astro.site);
             }
           }
         },
-        { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+        // Absolute trigger, not proportional: reveal once 60px of the element
+        // has entered. A percentage threshold scales with element height, so a
+        // tall card (the Day 1 agenda) can sit blank on screen while still
+        // falling short of its own percentage.
+        { threshold: 0, rootMargin: "0px 0px -60px 0px" }
       );
 
       document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
