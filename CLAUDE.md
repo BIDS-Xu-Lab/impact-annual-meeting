@@ -21,7 +21,7 @@ There is no test suite and no linter — `bun run build` completing cleanly is t
 
 ## Architecture
 
-`src/pages/index.astro` is the only page. It composes `BaseLayout` → `Hero`, `Overview`, `Agenda`, `Hotels`.
+`src/pages/index.astro` is the only page. It composes `BaseLayout` → `Hero`, `Overview`, `Agenda`, `Presentations`, `Hotels`.
 
 - `src/layouts/BaseLayout.astro` — `<head>` metadata (canonical URL, OG/Twitter cards, Google Fonts), renders `Header`/`Footer`, and owns the **global `.reveal` IntersectionObserver** (BaseLayout.astro:60-74). Any element given `class="reveal"` anywhere in the site animates in via that one observer.
 - `src/components/Overview.astro` — holds the Leaflet map. Leaflet is a real npm dependency; the map reads from `src/data/locations.ts`.
@@ -31,8 +31,9 @@ There is no test suite and no linter — `bun run build` completing cleanly is t
 
 Prefer editing these over touching component markup:
 
-- `src/data/agenda.ts` — the `event` object (title, dates, city, venue, `registerUrl`, `registrationCloses`) and the `agenda` array of days/items. Agenda items take `time`, `title`, optional `note`, and optional `kind` (`"session" | "break" | "social"` — social/break rows get a mint accent).
+- `src/data/agenda.ts` — the `event` object (title, dates, city, venue, `registerUrl`, `registrationCloses`) and the `agenda` array of days/items. Agenda items take `time`, `title`, optional `note`, and optional `kind` (`"session" | "break" | "social" | "breakout"` — social/break rows get a mint accent, breakout rows a coral one). General-session items also carry a `presentations` array of `{ site, org }`; `Presentations.astro` derives its side-by-side columns from those same entries, so the site order is edited here only.
 - `src/data/locations.ts` — the single source for every event location. Each entry has `id`, `kind` (`"venue" | "reception" | "hotel"`), `name`, `address`, `lat`, `lng`, and optional `url`/`note`. The Overview map pins **all** entries; the Hotels section renders only the `hotel` ones. Plain lat/lng — no maps API key involved.
+- `src/data/presentations.ts` — `presentationFormat`: the Day 1 talk length, slide count, and the six `topics` every site deck covers. Array order is the slide order — `Presentations.astro` numbers the cards `01`–`06` from the index, so reordering the array renumbers them. Day 2 breakout reference material belongs here too when it lands.
 
 The registration URL and deadline are referenced from `event` in three places (Header, Hero, Agenda). Change them in `agenda.ts` only.
 

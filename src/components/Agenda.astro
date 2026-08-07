@@ -68,6 +68,8 @@ import { agenda, event } from "../data/agenda";
                             </li>
                           ))}
                         </ol>
+                        {/* prettier-ignore */}
+                        <a class="agenda-jump" href="#presentations">What each presentation covers ↓</a>
                       </div>
                     )}
 
@@ -336,6 +338,23 @@ import { agenda, event } from "../data/agenda";
   .presentation-org {
     font-size: 0.9rem;
     color: var(--text-muted);
+  }
+
+  /* Same link treatment as the registration notice above. */
+  .agenda-jump {
+    display: inline-block;
+    margin-top: 0.85rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--navy);
+    text-decoration: underline;
+    text-decoration-color: var(--pink);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+  }
+
+  .agenda-jump:hover {
+    color: var(--pink);
   }
 
   .breakout-tracks {
