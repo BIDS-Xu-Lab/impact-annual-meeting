@@ -139,7 +139,7 @@ export const agenda: AgendaDay[] = [
         breakouts: [
           {
             code: "2A",
-            title: "Sensor data",
+            title: "Sensor data / Longitudinal modeling",
             detail: "Trajectory and time-series analytical methods",
           },
           {

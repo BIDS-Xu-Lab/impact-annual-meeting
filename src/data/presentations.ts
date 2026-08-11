@@ -12,7 +12,7 @@ export interface PresentationFormat {
 // The six slides every Day 1 site deck runs through. Array order is the slide
 // order, and Presentations.astro numbers them from it.
 export const presentationFormat: PresentationFormat = {
-  duration: "about 12 minutes",
+  duration: "about 10 minutes",
   slides: "six slides",
   topics: [
     { title: "Premise, population, and outcomes" },
