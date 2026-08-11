@@ -81,6 +81,12 @@ import { agenda, event } from "../data/agenda";
                             <li class="breakout-track">
                               <span class="breakout-code">{breakout.code}</span>
                               <h5 class="breakout-title">{breakout.title}</h5>
+                              {breakout.lead && (
+                                <p class="breakout-lead">
+                                  <span class="breakout-lead-label">Lead</span>
+                                  {breakout.lead}
+                                </p>
+                              )}
                               {breakout.detail && (
                                 <p class="breakout-detail">{breakout.detail}</p>
                               )}
@@ -393,8 +399,24 @@ import { agenda, event } from "../data/agenda";
     color: var(--text-heading);
   }
 
+  .breakout-lead {
+    margin-top: 0.35rem;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--navy);
+  }
+
+  .breakout-lead-label {
+    margin-right: 0.45rem;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
   .breakout-detail {
-    margin-top: 0.3rem;
+    margin-top: 0.45rem;
     font-size: 0.9rem;
     color: var(--text-muted);
   }

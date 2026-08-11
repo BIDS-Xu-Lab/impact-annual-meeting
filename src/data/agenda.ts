@@ -6,6 +6,7 @@ export interface AgendaPresentation {
 export interface AgendaBreakout {
   code: string;
   title: string;
+  lead?: string;
   detail?: string;
 }
 
@@ -122,11 +123,13 @@ export const agenda: AgendaDay[] = [
           {
             code: "1A",
             title: "EHR",
+            lead: "Roy Perlis",
             detail: "Data extraction issues and other topics related to EHR",
           },
           {
             code: "1B",
             title: "Cognitive change measurement",
+            lead: "Laura Germine",
             detail:
               "Digital cognitive assessment, including computational modeling of task-based data",
           },
@@ -161,6 +164,7 @@ export const agenda: AgendaDay[] = [
           {
             code: "3A",
             title: "NLP & AI/ML",
+            lead: "Guillermo Cecchi",
             detail: "Speech/language data and/or clinical records",
           },
           {
