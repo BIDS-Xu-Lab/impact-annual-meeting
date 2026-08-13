@@ -147,7 +147,8 @@ export const agenda: AgendaDay[] = [
           },
           {
             code: "2B",
-            title: "Retrun of results",
+            title: "Return of results",
+            lead: "Jessica Turner"
           },
         ],
       },
