@@ -147,7 +147,7 @@ export const agenda: AgendaDay[] = [
           },
           {
             code: "2B",
-            title: "Clinical translation",
+            title: "Retrun of results",
           },
         ],
       },
@@ -169,7 +169,7 @@ export const agenda: AgendaDay[] = [
           },
           {
             code: "3B",
-            title: "Return of results",
+            title: "Clinical translation",
           },
         ],
       },
