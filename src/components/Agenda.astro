@@ -16,13 +16,12 @@ import { agenda, event } from "../data/agenda";
 
     <aside class="registration-notice reveal">
       <p>
-        <strong>Registration is open through {event.registrationCloses}.</strong> Questions about
-        attending? Reach out to Polly Painter (<a href="mailto:polly.painter@yale.edu"
-          >polly.painter@yale.edu</a
-        >).
+        <strong>In-Person registration is now closed.</strong> If you would like to register for
+        remote attendance, please use the button below. Questions about attending? Reach out to Polly
+        Painter (<a href="mailto:polly.painter@yale.edu">polly.painter@yale.edu</a>).
       </p>
       <div class="registration-actions">
-        <Button href={event.registerUrl} size="lg" newTab>Register Now</Button>
+        <Button href={event.registerUrl} size="lg" newTab>Register for Remote Attendance</Button>
         <Button href={event.checkRegistrationUrl} variant="ghost" size="lg" newTab
           >Check Registration</Button
         >
@@ -64,7 +63,12 @@ import { agenda, event } from "../data/agenda";
                             <li class="presentation-row">
                               <span class="presentation-num">{index + 1}</span>
                               <span class="presentation-site">{presentation.site}</span>
-                              <span class="presentation-org">{presentation.org}</span>
+                              <span class="presentation-org">
+                                {presentation.org}
+                                {presentation.remote && (
+                                  <span class="remote-chip">Remote</span>
+                                )}
+                              </span>
                             </li>
                           ))}
                         </ol>
@@ -81,10 +85,12 @@ import { agenda, event } from "../data/agenda";
                             <li class="breakout-track">
                               <span class="breakout-code">{breakout.code}</span>
                               <h5 class="breakout-title">{breakout.title}</h5>
-                              {breakout.lead && (
+                              {breakout.leads && breakout.leads.length > 0 && (
                                 <p class="breakout-lead">
-                                  <span class="breakout-lead-label">Lead</span>
-                                  {breakout.lead}
+                                  <span class="breakout-lead-label">
+                                    {breakout.leads.length > 1 ? "Leads" : "Lead"}
+                                  </span>
+                                  {breakout.leads.join(" & ")}
                                 </p>
                               )}
                               {breakout.detail && (
@@ -344,6 +350,23 @@ import { agenda, event } from "../data/agenda";
   .presentation-org {
     font-size: 0.9rem;
     color: var(--text-muted);
+  }
+
+  /* Coral, like .breakout-code, so it reads as a heads-up rather than a label.
+     Sits after the institution because the site column is a fixed 9rem. */
+  .remote-chip {
+    display: inline-block;
+    margin-left: 0.5rem;
+    padding: 0.1rem 0.5rem;
+    border: 1px solid rgba(255, 171, 171, 0.5);
+    border-radius: var(--radius-pill);
+    background: rgba(255, 171, 171, 0.22);
+    color: var(--navy);
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
   }
 
   /* Same link treatment as the registration notice above. */

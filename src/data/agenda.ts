@@ -1,12 +1,13 @@
 export interface AgendaPresentation {
   site: string;
   org: string;
+  remote?: boolean;
 }
 
 export interface AgendaBreakout {
   code: string;
   title: string;
-  lead?: string;
+  leads?: string[];
   detail?: string;
 }
 
@@ -36,7 +37,6 @@ export const event = {
   registerUrl:
     "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=u76M3Tkh-E20EU4-h6vrXG5GuCMraMVDl2mHQfWjYDVUOTNOUDlHNkRVRDgyMlpPRENGTDdUS0w2Ui4u",
   checkRegistrationUrl: "https://impact-mh.org/2026-annual-meeting-registration/",
-  registrationCloses: "August 28th, 2026",
 };
 
 export const agenda: AgendaDay[] = [
@@ -83,7 +83,7 @@ export const agenda: AgendaDay[] = [
             org: "Albert Einstein College of Medicine & McLean Hospital",
           },
           { site: "COMPASS", org: "University of Michigan" },
-          { site: "ACE-D", org: "Stanford University" },
+          { site: "ACE-D", org: "Stanford University", remote: true },
         ],
       },
       {
@@ -123,13 +123,13 @@ export const agenda: AgendaDay[] = [
           {
             code: "1A",
             title: "EHR",
-            lead: "Roy Perlis",
+            leads: ["Roy Perlis"],
             detail: "Data extraction issues and other topics related to EHR",
           },
           {
             code: "1B",
             title: "Cognitive change measurement",
-            lead: "Laura Germine",
+            leads: ["Laura Germine"],
             detail:
               "Digital cognitive assessment, including computational modeling of task-based data",
           },
@@ -148,7 +148,7 @@ export const agenda: AgendaDay[] = [
           {
             code: "2B",
             title: "Return of results",
-            lead: "Jessica Turner"
+            leads: ["Jessica Turner"],
           },
         ],
       },
@@ -165,7 +165,7 @@ export const agenda: AgendaDay[] = [
           {
             code: "3A",
             title: "NLP & AI/ML",
-            lead: "Guillermo Cecchi",
+            leads: ["Guillermo Cecchi", "Trevor Cohen"],
             detail: "Speech/language data and/or clinical records",
           },
           {
@@ -187,11 +187,13 @@ export const agenda: AgendaDay[] = [
           {
             code: "4A",
             title: "OMOP",
+            leads: ["Hua Xu"],
             detail: "DCC-led session",
           },
           {
             code: "4B",
             title: "Publication planning",
+            leads: ["Sarah Morris"],
             detail: "Process for planning consortium publications",
           },
         ],

@@ -56,7 +56,10 @@ const sessions = (day1?.items ?? []).filter(
                   <li class="session-row">
                     <span class="session-num">{index + 1}</span>
                     <span class="session-site">{presentation.site}</span>
-                    <span class="session-org">{presentation.org}</span>
+                    <span class="session-org">
+                      {presentation.org}
+                      {presentation.remote && <span class="remote-chip">Remote</span>}
+                    </span>
                   </li>
                 ))}
               </ol>
@@ -216,6 +219,23 @@ const sessions = (day1?.items ?? []).filter(
     font-size: 0.875rem;
     line-height: 1.45;
     color: var(--text-muted);
+  }
+
+  /* Same chip as the agenda's presentation order; restated because Astro
+     scopes styles per file. */
+  .remote-chip {
+    display: inline-block;
+    margin-left: 0.5rem;
+    padding: 0.1rem 0.5rem;
+    border: 1px solid rgba(255, 171, 171, 0.5);
+    border-radius: var(--radius-pill);
+    background: rgba(255, 171, 171, 0.22);
+    color: var(--navy);
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
   }
 
   @media (max-width: 900px) {
