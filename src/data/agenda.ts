@@ -108,7 +108,6 @@ export const agenda: AgendaDay[] = [
     id: "day-2",
     label: "Day 2",
     date: "Wednesday, September 23rd",
-    note: "Breakout topics and their order are still being finalized and may change before the meeting.",
     items: [
       {
         time: "8:30 – 9:00 AM",
@@ -143,6 +142,7 @@ export const agenda: AgendaDay[] = [
           {
             code: "2A",
             title: "Sensor data / Longitudinal modeling",
+            leads: ["Sarah Yip", "Matt Engelhard"],
             detail: "Trajectory and time-series analytical methods",
           },
           {
@@ -171,6 +171,7 @@ export const agenda: AgendaDay[] = [
           {
             code: "3B",
             title: "Clinical translation",
+            leads: ["Alysa Doyle", "Lara Fodland-Ross"],
           },
         ],
       },
