@@ -1,0 +1,218 @@
+---
+import type { AgendaBreakout, AgendaItem } from "../data/agenda";
+import { agenda } from "../data/agenda";
+
+// Derived from the agenda rather than retyped, so editing a track in agenda.ts
+// updates the Day 2 rows and these cards together.
+const day2 = agenda.find((day) => day.id === "day-2");
+const slots = (day2?.items ?? []).filter(
+  (item): item is AgendaItem & { breakouts: AgendaBreakout[] } =>
+    (item.breakouts?.length ?? 0) > 0
+);
+---
+
+<section id="breakouts" class="section section-b">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-tag">Day 2 · Concurrent Sessions</span>
+      <h2 class="section-title">Breakout Descriptions</h2>
+    </div>
+
+    {
+      slots.map((slot) => (
+        <div class="group reveal">
+          <span class="group-label">
+            {slot.title} · {slot.time}
+          </span>
+          <div class="breakout-grid">
+            {slot.breakouts.map((breakout) => (
+              <article class="breakout-card" id={`breakout-${breakout.code.toLowerCase()}`}>
+                <header class="card-head">
+                  <span class="breakout-code">{breakout.code}</span>
+                  <h3 class="breakout-name">{breakout.title}</h3>
+                  {breakout.leads && breakout.leads.length > 0 && (
+                    <p class="breakout-lead">
+                      <span class="breakout-lead-label">
+                        {breakout.leads.length > 1 ? "Leads" : "Lead"}
+                      </span>
+                      {breakout.leads.join(" & ")}
+                    </p>
+                  )}
+                </header>
+
+                {breakout.description ? (
+                  <p class="breakout-body">{breakout.description}</p>
+                ) : (
+                  <>
+                    {breakout.detail && <p class="breakout-body">{breakout.detail}</p>}
+                    <p class="breakout-pending">Full description coming soon.</p>
+                  </>
+                )}
+
+                {breakout.goals && breakout.goals.length > 0 && (
+                  <div class="goals">
+                    <span class="card-label">Learning goals</span>
+                    <ul class="breakout-goals">
+                      {breakout.goals.map((goal) => (
+                        <li>{goal}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </article>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  /* Like Presentations, these cards deliberately have no hover lift — people
+     read them while cross-checking the agenda, so nothing shifts under the
+     cursor. */
+
+  .group {
+    margin-top: 2.5rem;
+  }
+
+  /* Same micro-label idiom as .agenda-detail-label; Astro scopes per file, so
+     it is restated here rather than shared. */
+  .group-label,
+  .card-label {
+    display: block;
+    margin-bottom: 0.75rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* start, not stretch — paired descriptions differ a lot in length, and a
+     short one should end where its text ends. */
+  .breakout-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: start;
+    gap: 1.5rem;
+  }
+
+  /* Coral top rail, echoing the coral left rail .agenda-item-breakout gives
+     these rows and the blue rail Presentations uses for general sessions. */
+  .breakout-card {
+    padding: 1.75rem 1.75rem 1.5rem;
+    background: var(--surface-card);
+    border: 1px solid var(--border-light);
+    border-top: 3px solid var(--coral);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    /* global.css scopes scroll-margin-top to section[id]; these cards are
+       anchor targets of their own, so they need it too or the fixed header
+       clips them. */
+    scroll-margin-top: calc(var(--header-height) + 16px);
+  }
+
+  .card-head {
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  /* Same chip as the agenda's concurrent tracks; restated because Astro scopes
+     styles per file. */
+  .breakout-code {
+    display: inline-block;
+    margin-bottom: 0.55rem;
+    padding: 0.2rem 0.7rem;
+    border: 1px solid rgba(255, 171, 171, 0.5);
+    border-radius: var(--radius-pill);
+    background: rgba(255, 171, 171, 0.22);
+    color: var(--navy);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .breakout-name {
+    font-size: 1.25rem;
+    line-height: 1.25;
+    text-wrap: balance;
+  }
+
+  .breakout-lead {
+    margin-top: 0.4rem;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--navy);
+  }
+
+  .breakout-lead-label {
+    margin-right: 0.45rem;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .breakout-body {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--text-body);
+  }
+
+  .breakout-pending {
+    margin-top: 0.6rem;
+    font-size: 0.92rem;
+    font-style: italic;
+    color: var(--text-muted);
+  }
+
+  .goals {
+    margin-top: 1.25rem;
+  }
+
+  .goals .card-label {
+    margin-bottom: 0.5rem;
+  }
+
+  /* Same dot bullets as .agenda-bullets. */
+  .breakout-goals {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    list-style: none;
+  }
+
+  .breakout-goals li {
+    position: relative;
+    padding-left: 1rem;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--text-body);
+  }
+
+  .breakout-goals li::before {
+    content: "";
+    position: absolute;
+    top: 0.6em;
+    left: 0;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--coral);
+  }
+
+  @media (max-width: 768px) {
+    .breakout-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .breakout-card {
+      padding: 1.5rem 1.5rem 1.25rem;
+    }
+  }
+</style>

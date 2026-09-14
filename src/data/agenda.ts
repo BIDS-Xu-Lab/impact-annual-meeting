@@ -8,7 +8,12 @@ export interface AgendaBreakout {
   code: string;
   title: string;
   leads?: string[];
+  /** One-line blurb shown on the agenda row. */
   detail?: string;
+  /** Long-form session description; Breakouts.astro renders it as a card. */
+  description?: string;
+  /** Optional learning goals, listed under the description. */
+  goals?: string[];
 }
 
 export interface AgendaItem {
@@ -124,6 +129,8 @@ export const agenda: AgendaDay[] = [
             title: "EHR",
             leads: ["Roy Perlis"],
             detail: "Data extraction issues and other topics related to EHR",
+            description:
+              "This breakout session will address the challenges and opportunities in applying electronic health records and other large-scale human subjects data for neuropsychiatric research questions. We will focus on specific characteristics of these data that require more thoughtful treatment in study design and analysis. We will also consider how alternate strategies to managing these challenges represent tradeoffs in terms of feasibility, statistical power, transparency, and acceptability to peer reviewers and editors. No singing or dancing will be required.",
           },
           {
             code: "1B",
@@ -131,6 +138,8 @@ export const agenda: AgendaDay[] = [
             leads: ["Laura Germine"],
             detail:
               "Digital cognitive assessment, including computational modeling of task-based data",
+            description:
+              "This group will discuss digital methods for evaluating cognitive status, long-term cognitive change, and short-term cognitive fluctuations with a focus on ecological momentary assessment methods, including computational methods for separating components of cognitive performance. As a group, we will identify key gaps/challenges and best practices in this area toward individually-measured cognitive phenotypes to advance computational translation.",
           },
         ],
       },
@@ -144,11 +153,24 @@ export const agenda: AgendaDay[] = [
             title: "Sensor data / Longitudinal modeling",
             leads: ["Sarah Yip", "Matt Engelhard"],
             detail: "Trajectory and time-series analytical methods",
+            description:
+              "This breakout session is designed to highlight the diversity of analytic choices researchers make when faced with complex clinical datasets. To do so, we will invite individuals from four different IMPACT sites to come up with short analytic plans for a fictional dataset comprised of longitudinal, multimodal data including sensor data. These presentations will be informal and approximately 5 minutes each with time for questions. We will then compare and discuss the assumptions, tradeoffs, and clinical implications embedded in their choices (e.g., person-centered vs. variable-centered approaches, handling of missing data, treatment of time, and how heterogeneity is conceptualized). Other discussion items include what would change if the clinical question changed (e.g., prediction vs. explanation vs. subtyping)?",
+            goals: [
+              "Recognize that the \"right\" analytic approach depends scientific goals and investigator preferences, not just the data structure.",
+              "Discuss methodological choices with peers of different analytic backgrounds.",
+              "Share pitfalls encountered when working with complex longitudinal data.",
+            ],
           },
           {
             code: "2B",
             title: "Return of results",
             leads: ["Jessica Turner"],
+            description:
+              "The goal of this breakout session is to address the issues of return of results from studies to the participants and the public. The different IMPACT sites are invited to say a few words about their approaches and concerns in RoR, or to share success stories from their experiences. We will have a brief presentation from other large studies on their approaches to RoR, as well.",
+            goals: [
+              "Understand what Return of Results entails.",
+              "Consider the what, why, when and how of RoR might apply to your studies.",
+            ],
           },
         ],
       },
@@ -172,6 +194,8 @@ export const agenda: AgendaDay[] = [
             code: "3B",
             title: "Clinical translation",
             leads: ["Alysa Doyle", "Lara Fodland-Ross"],
+            description:
+              "This breakout will focus on how IMPACT-MH projects can move their scientific advances toward meaningful clinical application. Using brief examples from participating projects, we will first identify what each project is ultimately seeking to translate—and the clinical decision or outcome it is intended to improve. We will then examine where along the pathway from research to clinical use translation becomes difficult, using these points not as barriers to progress, but as a way to identify the evidence, infrastructure, partnerships, or next steps needed to move the work forward.",
           },
         ],
       },
@@ -190,12 +214,16 @@ export const agenda: AgendaDay[] = [
             title: "OMOP",
             leads: ["Hua Xu"],
             detail: "DCC-led session",
+            description:
+              "This session builds on the EHR and NLP/AI/ML sessions, with the goal of providing hands-on experience in EHR data harmonization using AI technologies. We will first review the OMOP Common Data Model (CDM) and the EHR data structure proposed by the DCC. We will then demonstrate an AI-powered tool for transforming local EHR data into the OMOP CDM format. The session will also include dedicated time for discussion of potential challenges in harmonizing and processing EHR data from individual sites, as well as possible strategies for addressing these challenges.",
           },
           {
             code: "4B",
             title: "Publication planning",
             leads: ["Sarah Morris"],
             detail: "Process for planning consortium publications",
+            description:
+              "During this session, participants will review the IMPACT-MH publication policy and discuss concrete steps in proposing and conducting cross-project analyses and publications. The discussion will focus on centralized or cross-project publications, since publications from individual U01s/UF1s are not governed by the IMPACT-MH publication policy. This discussion should help to set the stage for the brainstorming session later in the day at which specific topics for cross-cutting analyses and publications will be discussed. Although the focus is intended to be on procedures for proposing and conducting joint projects, rather than specific topics for papers, we may discuss collaborative analysis of common data elements as a starting point/exemplar.",
           },
         ],
       },

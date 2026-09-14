@@ -95,6 +95,8 @@ import { agenda, event } from "../data/agenda";
                               {breakout.detail && (
                                 <p class="breakout-detail">{breakout.detail}</p>
                               )}
+                              {/* prettier-ignore */}
+                              <a class="agenda-jump breakout-jump" href={`#breakout-${breakout.code.toLowerCase()}`}>View description ↓</a>
                             </li>
                           ))}
                         </ul>
@@ -441,6 +443,13 @@ import { agenda, event } from "../data/agenda";
     margin-top: 0.45rem;
     font-size: 0.9rem;
     color: var(--text-muted);
+  }
+
+  /* .agenda-jump's 0.85rem is tuned for the wider presentation list; inside a
+     track card it only needs to clear the line above it. */
+  .breakout-jump {
+    margin-top: 0.6rem;
+    font-size: 0.85rem;
   }
 
   @media (max-width: 1024px) {
