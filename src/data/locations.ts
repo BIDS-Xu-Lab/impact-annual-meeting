@@ -9,6 +9,8 @@ export interface EventLocation {
   lng: number;
   url?: string;
   note?: string;
+  /** Static asset under public/, opened on its own in a new tab (e.g. a menu). */
+  menuUrl?: string;
 }
 
 export const kindLabel: Record<LocationKind, string> = {
@@ -35,6 +37,7 @@ export const locations: EventLocation[] = [
     lat: 39.051179,
     lng: -77.117726,
     note: "Reception — Tuesday, 5:00 – 6:00 PM",
+    menuUrl: "/IMPACT-MH_Menu.png",
   },
   {
     id: "canopy",

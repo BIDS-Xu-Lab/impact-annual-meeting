@@ -1,4 +1,5 @@
 ---
+import ExternalIcon from "./ExternalIcon.astro";
 import { event } from "../data/agenda";
 import { locations, kindLabel, directionsUrl } from "../data/locations";
 ---
@@ -69,6 +70,17 @@ import { locations, kindLabel, directionsUrl } from "../data/locations";
                 >
                   Directions &rarr;
                 </a>
+                {loc.menuUrl && (
+                  <a
+                    class="map-legend-link map-legend-menu"
+                    href={loc.menuUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View menu
+                    <ExternalIcon />
+                  </a>
+                )}
               </div>
             </li>
           ))
@@ -255,6 +267,11 @@ import { locations, kindLabel, directionsUrl } from "../data/locations";
     color: var(--pink);
   }
 
+  /* .map-legend-body's gap already separates the rows; this only tightens it. */
+  .map-legend-menu {
+    margin-top: 0.15rem;
+  }
+
   @media (max-width: 768px) {
     .overview-grid {
       grid-template-columns: 1fr;
@@ -355,6 +372,18 @@ import { locations, kindLabel, directionsUrl } from "../data/locations";
     font-weight: 600;
     color: var(--navy);
   }
+
+  .map-popup-menu {
+    display: block;
+    margin-top: 0.35rem;
+  }
+
+  .map-popup-menu svg {
+    width: 0.95em;
+    height: 0.95em;
+    margin-left: 0.3rem;
+    vertical-align: -0.12em;
+  }
 </style>
 
 <script>
@@ -374,6 +403,8 @@ import { locations, kindLabel, directionsUrl } from "../data/locations";
       maxZoom: 19,
     }).addTo(map);
 
+    // The popup markup below repeats ExternalIcon.astro's svg inline: this script
+    // is a separate bundle and cannot render an Astro component.
     for (const loc of locations) {
       const icon = L.divIcon({
         className: "",
@@ -390,7 +421,12 @@ import { locations, kindLabel, directionsUrl } from "../data/locations";
            <span class="map-popup-name">${loc.name}</span>
            <span class="map-popup-address">${loc.address}</span>
            ${loc.note ? `<span class="map-popup-note">${loc.note}</span>` : ""}
-           <a class="map-popup-link" href="${directionsUrl(loc)}" target="_blank" rel="noopener noreferrer">Directions &rarr;</a>`
+           <a class="map-popup-link" href="${directionsUrl(loc)}" target="_blank" rel="noopener noreferrer">Directions &rarr;</a>
+           ${
+             loc.menuUrl
+               ? `<a class="map-popup-link map-popup-menu" href="${loc.menuUrl}" target="_blank" rel="noopener noreferrer">View menu<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg></a>`
+               : ""
+           }`
         );
     }
 

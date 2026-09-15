@@ -20,6 +20,11 @@ export interface AgendaItem {
   time: string;
   title: string;
   note?: string;
+  /**
+   * Resolves against locations.ts; the row renders that location's address and,
+   * when it has one, its menu link under the note.
+   */
+  locationId?: string;
   kind?: "session" | "break" | "social" | "breakout";
   bullets?: string[];
   presentations?: AgendaPresentation[];
@@ -104,7 +109,8 @@ export const agenda: AgendaDay[] = [
       {
         time: "5:00 – 6:00 PM",
         title: "Reception",
-        note: "Off-site at Pinstripes — pinned on the map above.",
+        note: "Pinstripes — pinned on the map above.",
+        locationId: "pinstripes",
         kind: "social",
       },
     ],
