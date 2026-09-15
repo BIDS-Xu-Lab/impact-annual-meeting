@@ -189,6 +189,8 @@ export const agenda: AgendaDay[] = [
             title: "NLP & AI/ML",
             leads: ["Guillermo Cecchi", "Trevor Cohen"],
             detail: "Speech/language data and/or clinical records",
+            description: 
+              "The goal of this breakout session is to identify common themes related to the application of NLP across projects. The session will include presentation of some illustrative examples from within the consortium, intended to stimulate discussion around issues that have informed key methodological decisions (e.g. computational constraints, model capabilities) and approaches toward validation (e.g. predicting outcomes, alignment with human judgment).",
           },
           {
             code: "3B",
