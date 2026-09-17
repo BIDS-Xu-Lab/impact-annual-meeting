@@ -59,7 +59,7 @@ export const agenda: AgendaDay[] = [
         time: "12:30 – 1:00 PM",
         title: "Gather and Greeting",
         kind: "session",
-        bullets: ["NIMH leadership", "DCC leadership", "Announcements and logistics"],
+        bullets: ["Welcome remarks by Andrea Beckel-Mitchenerm, NIMH", "DCC leadership", "Announcements and logistics - Jenni Pacheco, NIMH"],
       },
       {
         time: "1:00 – 2:30 PM",
@@ -107,7 +107,7 @@ export const agenda: AgendaDay[] = [
         kind: "session",
       },
       {
-        time: "5:00 – 6:00 PM",
+        time: "5:00 – 7:00 PM",
         title: "Reception",
         note: "Pinstripes — pinned on the map above.",
         locationId: "pinstripes",
