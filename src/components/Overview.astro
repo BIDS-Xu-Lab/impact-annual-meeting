@@ -9,6 +9,26 @@ import { locations, kindLabel, directionsUrl } from "../data/locations";
     <div class="reveal">
       <span class="section-tag">About the Event</span>
       <h2 class="section-title">Overview</h2>
+      <div class="overview-docs">
+        <a
+          class="overview-docs-link"
+          href="/Impact-calendar.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          2027 Calendar
+          <ExternalIcon />
+        </a>
+        <a
+          class="overview-docs-link"
+          href="/handbook.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Handbook
+          <ExternalIcon />
+        </a>
+      </div>
     </div>
 
     <div class="overview-grid">
@@ -91,6 +111,25 @@ import { locations, kindLabel, directionsUrl } from "../data/locations";
 </section>
 
 <style>
+  .overview-docs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.75rem;
+    margin-top: 1rem;
+  }
+
+  .overview-docs-link {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--navy-ink);
+  }
+
+  .overview-docs-link:hover {
+    color: var(--pink);
+  }
+
   .overview-grid {
     display: grid;
     grid-template-columns: 1.2fr 1fr;
